@@ -1,0 +1,104 @@
+﻿<UserControl x:Class="WPFNotificationDemo.Assets.NotificationItem"
+            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             xmlns:self="ASTA.Host.Presentation.Views.Notifications"
+             d:DesignHeight="180" d:DesignWidth="320"
+             x:Name="NotificationWindow"
+             Background="Transparent">
+    <UserControl.Triggers>
+        <EventTrigger RoutedEvent="Button.Click" SourceName="CloseButton">
+            <BeginStoryboard>
+                <Storyboard >
+                    <DoubleAnimation Storyboard.TargetName="NotificationWindow" From="1" To="0" Storyboard.TargetProperty="(Grid.Opacity)" Duration="0:0:0"/>
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </UserControl.Triggers>
+    <UserControl.Style>
+        <Style TargetType="UserControl">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding ElementName=NotificationWindow,Path=Opacity}" Value="0"/>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Style>
+    <Grid Background="Transparent">
+        <Border Name="border"
+                CornerRadius="10" 
+                Margin="10"
+                BorderThickness="1"
+                
+                BorderBrush="{DynamicResource Accent}">
+            <Border.Background>
+                <SolidColorBrush Color="{DynamicResource WindowBackgroundColor}" />
+            </Border.Background>
+            <Border.Resources>
+                <Storyboard x:Key="BackgroundAnimation">
+                    <ColorAnimation Storyboard.TargetName="WindowBorderBackground" Storyboard.TargetProperty="Color" To="{DynamicResource WindowBackgroundColor}" Duration="0:0:.6" />
+                </Storyboard>
+            </Border.Resources>
+            <Border.Effect>
+                <DropShadowEffect ShadowDepth="0" Opacity="0.8" BlurRadius="10"/>
+            </Border.Effect>
+            <Grid Height="160" Width="300" Margin="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Image Grid.RowSpan="2" Source="/Resources/Images/newMail.png" Margin="4" Width="80"></Image>
+                <TextBlock Text="{Binding Path=Title}" TextOptions.TextRenderingMode="ClearType" TextOptions.TextFormattingMode="Display" Foreground="DimGray" TextAlignment="Center"
+                                   FontFamily="Arial" FontSize="14" FontWeight="Bold" VerticalAlignment="Center"  Margin="4,4,4,2" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" Grid.ColumnSpan="2" />
+                <Button x:Name="CloseButton"
+                        Grid.Column="1"
+                        HorizontalAlignment="Right" 
+                        Margin="0,0,27,0"
+                        Click="CloseButton_Click"
+                        Style="{StaticResource SystemCloseButton}" 
+                        Width="16"
+                        Height="16" >
+                    <Button.Content>
+                        <Grid Width="10" Height="12" RenderTransform="1,0,0,1,0,1">
+                            <Path Data="M0,0 L8,7 M8,0 L0,7 Z" Width="8" Height="7" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                                              Stroke="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}" StrokeThickness="1.5"  />
+                        </Grid>
+                    </Button.Content>
+                </Button>
+                <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="1" VerticalAlignment="Stretch">
+                    <StackPanel Orientation="Horizontal" Margin="5">
+                        <TextBlock Text="From :" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Black" Foreground="DarkGoldenrod"></TextBlock>
+                        <TextBlock Grid.Row="0"
+                               Grid.Column="1"
+                               Text="{Binding Sender}"
+                               TextTrimming="CharacterEllipsis"
+                               TextWrapping="Wrap"
+                               FontFamily="Arial"
+                               VerticalAlignment="Center"
+                               Foreground="Black"
+                               Margin="5,0,0,0"
+                               Width="145"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal"  Margin="5">
+                        
+                        <TextBlock Grid.Row="1"
+                               Grid.Column="0" Grid.ColumnSpan="2"
+                               Text="{Binding Content}"
+                               TextTrimming="CharacterEllipsis"
+                               TextWrapping="Wrap"
+                               FontFamily="Arial"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Stretch"
+                               Foreground="Black"
+                               Margin="5,0,0,0"
+                               Width="150"/>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

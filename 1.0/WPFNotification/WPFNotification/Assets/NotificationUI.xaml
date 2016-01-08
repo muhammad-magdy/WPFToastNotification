@@ -1,0 +1,10 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:Model="clr-namespace:WPFNotification.Model"
+                    xmlns:NotificationView="clr-namespace:WPFNotification.Assets">
+       
+    
+    <DataTemplate x:Key="notificationTemplate" DataType="{x:Type Model:Notification}">
+        <NotificationView:NotificationItem/>
+    </DataTemplate>
+</ResourceDictionary>

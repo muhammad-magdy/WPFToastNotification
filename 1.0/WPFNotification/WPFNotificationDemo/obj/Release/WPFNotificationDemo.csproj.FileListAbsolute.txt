@@ -1,0 +1,1 @@
+D:\GithubProjects\WPFNotification\WPFNotificationDemo\bin\Release\WPFNotificationDemo.exe.config

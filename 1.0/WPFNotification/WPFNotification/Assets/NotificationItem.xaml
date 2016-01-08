@@ -1,0 +1,83 @@
+﻿<UserControl x:Class="WPFNotification.Assets.NotificationItem"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:converters="clr-namespace:WPFNotification.Converters"
+             mc:Ignorable="d" 
+             d:DesignHeight="150" d:DesignWidth="300"
+             x:Name="NotificationWindow"
+             Background="Transparent">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/WPFNotification;component/Assets/CloseButton.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+           
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <UserControl.Triggers>
+        <EventTrigger RoutedEvent="Button.Click" SourceName="CloseButton">
+            <BeginStoryboard>
+                <Storyboard >
+                    <DoubleAnimation Storyboard.TargetName="NotificationWindow" From="1" To="0" Storyboard.TargetProperty="(Grid.Opacity)" Duration="0:0:0"/>
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </UserControl.Triggers>
+    <UserControl.Style>
+        <Style TargetType="UserControl">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding ElementName=NotificationWindow,Path=Opacity}" Value="0"/>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Style>
+    <Grid Background="Transparent">
+        <Border Name="border" Background="#2a3345" BorderThickness="0" CornerRadius="10" Margin="10">
+            <Border.Effect>
+                <DropShadowEffect ShadowDepth="0" Opacity="0.8" BlurRadius="10"/>
+            </Border.Effect>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Image Grid.RowSpan="2" 
+                       Source="{Binding ImgURL, Converter={converters:EmptyStringConverter}, ConverterParameter='pack://application:,,,/WPFNotification;component/Resources/Images/notification-icon.png'}" 
+                       Margin="4" Width="80"></Image>
+                <TextBlock Grid.Column="1" Text="{Binding Path=Title}"  TextOptions.TextRenderingMode="ClearType" TextOptions.TextFormattingMode="Display" Foreground="White" 
+                                   FontFamily="Arial" FontSize="14" FontWeight="Bold" VerticalAlignment="Center"  Margin="2,4,4,2" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" />
+                <Button x:Name="CloseButton"
+                        Width="16" 
+                        Height="16"
+                        Grid.Column="1"
+                        HorizontalAlignment="Right" 
+                        Margin="0,0,12,0"
+                        Click="CloseButton_Click"
+                        Style="{StaticResource SystemCloseButton}">
+                    <Button.Content>
+                        <Grid Width="10" Height="12" RenderTransform="1,0,0,1,0,1">
+                            <Path Data="M0,0 L8,7 M8,0 L0,7 Z" Width="8" Height="7" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                                              Stroke="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}" StrokeThickness="1.5"  />
+                        </Grid>
+                    </Button.Content>
+                </Button>
+                <TextBlock Grid.Row="1"
+                           Grid.Column="1"
+                           Text="{Binding Path=Message}"
+                           TextOptions.TextRenderingMode="ClearType"
+                           TextOptions.TextFormattingMode="Display"
+                           Foreground="White"
+                           FontFamily="Arial"
+                           VerticalAlignment="Stretch"  
+                           Margin="5"
+                           TextWrapping="Wrap"
+                           TextTrimming="CharacterEllipsis"/>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

@@ -1,0 +1,18 @@
+﻿<mui:ModernWindow x:Class="WPFNotificationDemo.MainWindow"
+                  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                  xmlns:mui="http://firstfloorsoftware.com/ModernUI"
+                  Title="Notification Poup" 
+                  Style="{StaticResource BlankWindow}"
+                  Width="400"
+                  Height="300"
+                  DataContext="{Binding Main,Source={StaticResource Locator}}">
+    <ScrollViewer>
+        <StackPanel>
+            <TextBlock Text="Notification Poup Window" Style="{StaticResource Heading2}" />
+            <Button Command="{Binding AddNotification}"  Margin="5,10">Show Default Notification</Button>
+            <Button Command="{Binding MailNotification}"  Margin="5,10">Show Mail Notification</Button>
+        </StackPanel>
+        
+    </ScrollViewer>
+</mui:ModernWindow>

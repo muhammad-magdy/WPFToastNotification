@@ -1,0 +1,91 @@
+using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.CommandWpf;
+using System;
+using WPFNotification.Core.Configuration;
+using WPFNotification.Model;
+using WPFNotification.Services;
+using WPFNotificationDemo.Core;
+using WPFNotificationDemo.Model;
+namespace WPFNotificationDemo.ViewModel
+{
+    /// <summary>
+    /// This class contains properties that the main View can data bind to.
+    /// <para>
+    /// Use the <strong>mvvminpc</strong> snippet to add bindable properties to this ViewModel.
+    /// </para>
+    /// <para>
+    /// You can also use Blend to data bind with the tool's support.
+    /// </para>
+    /// <para>
+    /// See http://www.galasoft.ch/mvvm
+    /// </para>
+    /// </summary>
+    public class MainViewModel : ViewModelBase
+    {
+        private readonly INotificationDialogService _dailogService;
+        /// <summary>
+        /// Initializes a new instance of the MainViewModel class.
+        /// </summary>
+        /// <param name="dailogService">The NotificationDialogService object</param>
+
+
+        public MainViewModel(INotificationDialogService dailogService)
+        {
+            _dailogService = dailogService;
+        }
+
+
+
+        private RelayCommand _mailNotification;
+
+        /// <summary>
+        /// The mail notification command.
+        /// create MailNotification and NotificationConfiguration objects  and send them to NotificationDialogService to show notification. 
+        /// </summary>
+        public RelayCommand MailNotification
+        {
+            get
+            {
+                return _mailNotification
+                    ?? (_mailNotification = new RelayCommand(
+                    () =>
+                    {
+                        var newNotification = new MailNotification()
+                        {
+                            Title = "Vacation Request",
+                            Sender = "Mohamed Magdy",
+                            Content = "I would like to request for vacation from 20/12/2015 to 30/12/2015 ............."
+                        };
+                        var configuration = new NotificationConfiguration(TimeSpan.Zero, null, null, Constants.MailNotificationTemplateName);
+                        _dailogService.ShowNotificationWindow(newNotification, configuration);
+                    }));
+            }
+        }
+
+
+        private RelayCommand _addNotification;
+
+        /// <summary>
+        /// The AddNotification command.
+        /// Create Notification object and send it to NotificationDialogService to display the notification.
+        /// </summary>
+        public RelayCommand AddNotification
+        {
+            get
+            {
+                return _addNotification
+                    ?? (_addNotification = new RelayCommand(
+                    () =>
+                    {
+                        var newNotification = new Notification()
+                        {
+                            Title = "Test Fail",
+                            Message = "Test one Fail Please check your Machine Code and Try Again"
+                            // ,ImgURL = "pack://application:,,,a/Resources/Images/warning.png"
+                        };
+                        _dailogService.ShowNotificationWindow(newNotification);
+                    }));
+            }
+        }
+    }
+}
