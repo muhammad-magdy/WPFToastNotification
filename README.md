@@ -1,4 +1,4 @@
-# WPFToastNotification
+# Toast Notification
 Fancy toast notification for WPF applications easy to use and support MVVM pattern. A small notification window with image, title and content displayed at the bottom of the screen. You can use the default implementation or build your own custom notification.
 
 [![NuGet](https://img.shields.io/nuget/dt/WPFNotification.svg)](https://www.nuget.org/packages/WPFNotification)
