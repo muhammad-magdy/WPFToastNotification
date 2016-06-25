@@ -19,10 +19,16 @@ See some [screenshots](https://github.com/muhammad-magdy/WPFToastNotification/wi
   * Width
   * Height
   * Notification template 
+  * Notification Flow Direction, Set direction in which new notifications will appear. Avalaible options are:
+    * RightBottom (default)
+    * LeftBottom
+    * LeftUp
+    * RightUp
 * Customizable
   * You can impelement your own notification
 * Show one notification per time and if there are other notifications they will be placed in a queue and will be shown when the place is available
 * Prevent the notification from fading out when hovering on it
+* **Support windows 7 or later.** 
 
 ## Acknowledgements
 * Adapted the NotifyBox from [Elysium](https://elysiumextra.codeplex.com)
