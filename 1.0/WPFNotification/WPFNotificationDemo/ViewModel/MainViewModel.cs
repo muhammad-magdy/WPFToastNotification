@@ -56,34 +56,36 @@ namespace WPFNotificationDemo.ViewModel
                             Sender = "Mohamed Magdy",
                             Content = "I would like to request for vacation from 20/12/2015 to 30/12/2015 ............."
                         };
-                        var configuration = new NotificationConfiguration(TimeSpan.Zero, null, null, Constants.MailNotificationTemplateName);
+                        var configuration = new NotificationConfiguration(TimeSpan.Zero, null, null, Constants.MailNotificationTemplateName, null);
                         _dailogService.ShowNotificationWindow(newNotification, configuration);
                     }));
             }
         }
 
 
-        private RelayCommand _addNotification;
+        private RelayCommand<NotificationFlowDirection> _addNotification;
 
         /// <summary>
         /// The AddNotification command.
         /// Create Notification object and send it to NotificationDialogService to display the notification.
         /// </summary>
-        public RelayCommand AddNotification
+        public RelayCommand<NotificationFlowDirection> AddNotification
         {
             get
             {
                 return _addNotification
-                    ?? (_addNotification = new RelayCommand(
-                    () =>
+                    ?? (_addNotification = new RelayCommand<NotificationFlowDirection>(
+                    (notificationFlowDirection) =>
                     {
+                        var notificationConfiguration = NotificationConfiguration.DefaultConfiguration;
+                        notificationConfiguration.NotificationFlowDirection = notificationFlowDirection;
                         var newNotification = new Notification()
                         {
                             Title = "Test Fail",
                             Message = "Test one Fail Please check your Machine Code and Try Again"
                             // ,ImgURL = "pack://application:,,,a/Resources/Images/warning.png"
                         };
-                        _dailogService.ShowNotificationWindow(newNotification);
+                        _dailogService.ShowNotificationWindow(newNotification, notificationConfiguration);
                     }));
             }
         }

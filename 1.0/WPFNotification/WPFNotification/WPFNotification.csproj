@@ -44,6 +44,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Reactive.Core">
       <HintPath>..\packages\Rx-Core.2.2.5\lib\net45\System.Reactive.Core.dll</HintPath>
     </Reference>
@@ -59,6 +60,7 @@
     <Reference Include="System.Reactive.Windows.Threading">
       <HintPath>..\packages\Rx-XAML.2.2.5\lib\net45\System.Reactive.Windows.Threading.dll</HintPath>
     </Reference>
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Expression.Blend.Sdk.1.0.2\lib\net45\System.Windows.Interactivity.dll</HintPath>
     </Reference>
@@ -78,6 +80,7 @@
     <Compile Include="Converters\BaseConverter.cs" />
     <Compile Include="Converters\EmptyStringConverter.cs" />
     <Compile Include="Core\Configuration\NotificationConfiguration.cs" />
+    <Compile Include="Core\Configuration\NotificationFlowDirection.cs" />
     <Compile Include="Services\INotificationDialogService.cs" />
     <Compile Include="Services\NotificationDialogService.cs" />
     <Page Include="Assets\CloseButton.xaml">

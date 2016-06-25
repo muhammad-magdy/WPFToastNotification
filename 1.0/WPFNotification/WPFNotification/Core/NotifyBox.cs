@@ -78,7 +78,7 @@ namespace WPFNotification.Core
                 UseLayoutRounding = true,
                 ContentTemplate = notificationTemplate
             };
-            Show(window, configuration.DisplayDuration);
+            Show(window, configuration.DisplayDuration, configuration.NotificationFlowDirection);
         }
 
         /// <summary>
@@ -95,13 +95,12 @@ namespace WPFNotification.Core
         /// </summary>
         /// <param name="window">The window.</param>
         /// <param name="displayDuration">The display duration.</param>
-        public static void Show(Window window, TimeSpan displayDuration)
+        public static void Show(Window window, TimeSpan displayDuration, NotificationFlowDirection notificationFlowDirection)
         {
             BehaviorCollection behaviors = Interaction.GetBehaviors(window);
             behaviors.Add(new FadeBehavior());
             behaviors.Add(new SlideBehavior());
-            window.Top = SystemParameters.WorkArea.Height - window.Height - window.Margin.Top;
-            window.Left = SystemParameters.WorkArea.Width - window.Width - window.Margin.Right - Margin;
+            SetWindowDirection(window, notificationFlowDirection);
             notificationWindowsCount += 1;
             WindowInfo windowInfo = new WindowInfo()
             {
@@ -215,6 +214,42 @@ namespace WPFNotification.Core
                     BufferWindowInfo.Window.Show();
                     notificationsBuffer.Remove(BufferWindowInfo);
                 }
+            }
+        }
+
+        /// <summary>
+        /// Display the notification window in specified direction of the screen
+        /// </summary>
+        /// <param name="window"> The window object</param>
+        /// <param name="notificationFlowDirection"> Window Direction relative to Desktop</param>
+        private static void SetWindowDirection(Window window, NotificationFlowDirection notificationFlowDirection)
+        {
+            var workingArea = System.Windows.Forms.Screen.PrimaryScreen.WorkingArea;
+            var transform = PresentationSource.FromVisual(Application.Current.MainWindow).CompositionTarget.TransformFromDevice;
+            var corner = transform.Transform(new Point(workingArea.Right, workingArea.Bottom));
+
+            switch (notificationFlowDirection)
+            {
+                case NotificationFlowDirection.RightBottom:
+                    window.Left = corner.X - window.Width - window.Margin.Right - Margin;
+                    window.Top = corner.Y - window.Height - window.Margin.Top;
+                    break;
+                case NotificationFlowDirection.LeftBottom:
+                    window.Left = 0;
+                    window.Top = corner.Y - window.Height - window.Margin.Top;
+                    break;
+                case NotificationFlowDirection.LeftUp:
+                    window.Left = 0;
+                    window.Top = 0;
+                    break;
+                case NotificationFlowDirection.RightUp:
+                    window.Left = corner.X - window.Width - window.Margin.Right - Margin;
+                    window.Top = 0;
+                    break;
+                default:
+                    window.Left = corner.X - window.Width - window.Margin.Right - Margin;
+                    window.Top = corner.Y - window.Height - window.Margin.Top;
+                    break;
             }
         }
 

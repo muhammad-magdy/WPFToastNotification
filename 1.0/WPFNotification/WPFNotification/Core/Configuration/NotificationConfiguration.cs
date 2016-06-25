@@ -37,12 +37,14 @@ namespace WPFNotification.Core.Configuration
         /// <param name="width">The notification width. set it to null to use default value</param>
         /// <param name="height">The notification height. set it to null to use default value</param>
         /// <param name="templateName">The notification template name. set it to null to use default value</param>
-        public NotificationConfiguration(TimeSpan displayDuration, int? width, int? height, string templateName)
+        /// <param name="notificationFlowDirection">The notification flow direction. set it to null to use default value (RightBottom)</param>
+        public NotificationConfiguration(TimeSpan displayDuration, int? width, int? height, string templateName, NotificationFlowDirection? notificationFlowDirection)
         {
             DisplayDuration = displayDuration > TimeSpan.Zero ? displayDuration : DefaultDisplayDuration;
             Width = width.HasValue ? width : DefaultWidth;
             Height = height.HasValue ? height : DefaultHeight;
             TemplateName = !string.IsNullOrEmpty(templateName) ? templateName : DefaultTemplateName;
+            NotificationFlowDirection = notificationFlowDirection ?? NotificationFlowDirection.RightBottom;
         }
         #endregion
 
@@ -54,7 +56,7 @@ namespace WPFNotification.Core.Configuration
         {
             get
             {
-                return new NotificationConfiguration(DefaultDisplayDuration, DefaultWidth, DefaultHeight, DefaultTemplateName);
+                return new NotificationConfiguration(DefaultDisplayDuration, DefaultWidth, DefaultHeight, DefaultTemplateName, NotificationFlowDirection.RightBottom);
             }
         }
 
@@ -77,6 +79,10 @@ namespace WPFNotification.Core.Configuration
         /// The template of notification window
         /// </summary>
         public string TemplateName { get; private set; }
+        /// <summary>
+        /// The notification window flow direction
+        /// </summary>
+        public NotificationFlowDirection NotificationFlowDirection { get; set; }
         #endregion
 
 
