@@ -221,7 +221,7 @@ namespace WPFNotification.Core
         /// Display the notification window in specified direction of the screen
         /// </summary>
         /// <param name="window"> The window object</param>
-        /// <param name="notificationFlowDirection"> Window Direction relative to Desktop</param>
+        /// <param name="notificationFlowDirection"> Direction in which new notifications will appear.</param>
         private static void SetWindowDirection(Window window, NotificationFlowDirection notificationFlowDirection)
         {
             var workingArea = System.Windows.Forms.Screen.PrimaryScreen.WorkingArea;
