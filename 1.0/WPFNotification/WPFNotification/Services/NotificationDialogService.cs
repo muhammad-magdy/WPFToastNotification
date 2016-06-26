@@ -1,4 +1,5 @@
-﻿using WPFNotification.Core;
+﻿using System;
+using WPFNotification.Core;
 using WPFNotification.Core.Configuration;
 
 namespace WPFNotification.Services
@@ -22,6 +23,14 @@ namespace WPFNotification.Services
         public void ShowNotificationWindow(object content, NotificationConfiguration configuration)
         {
             NotifyBox.Show(content, configuration);
+        }
+
+        /// <summary>
+        ///  Remove all notifications from notification list and buffer list.
+        /// </summary>
+        public void ClearNotifications()
+        {
+            NotifyBox.ClearNotifications();
         }
     }
 }

@@ -127,10 +127,11 @@ namespace WPFNotification.Core
         /// <summary>
         /// Remove all notifications from notification list and buffer list.
         /// </summary>
-        public static void CleanNotification()
+        public static void ClearNotifications()
         {
-            notificationWindows = new List<WindowInfo>();
-            notificationsBuffer = new List<WindowInfo>();
+            notificationWindows.Clear();
+            notificationsBuffer.Clear();
+           
             notificationWindowsCount = 0;
         }
 

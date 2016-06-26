@@ -30,7 +30,6 @@ namespace WPFNotificationDemo.ViewModel
         public ViewModelLocator()
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
-
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<INotificationDialogService, NotificationDialogService>();
         }
@@ -45,7 +44,9 @@ namespace WPFNotificationDemo.ViewModel
         
         public static void Cleanup()
         {
-            // TODO Clear the ViewModels
+            var notificationService = ServiceLocator.Current.GetInstance<INotificationDialogService>();
+            notificationService.ClearNotifications();
+            App.Current.Shutdown();
         }
     }
 }

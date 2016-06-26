@@ -139,10 +139,10 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Images\notificationPackageIcon-50x50.png" />
+    <Resource Include="Resources\Images\notificationPackageIcon-64x64.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Images\toast_Icon50x50.png" />
+    <Resource Include="Resources\Images\toast_Icon64x64.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -7,7 +7,7 @@
                   Icon="/Resources/images/toast_Icon.png"
                   Style="{StaticResource BlankWindow}"
                   Width="400"
-                  Height="300"
+                  Height="400"
                   DataContext="{Binding Main,Source={StaticResource Locator}}">
     <ScrollViewer>
         <StackPanel>
@@ -17,6 +17,7 @@
             <Button Command="{Binding AddNotification}" CommandParameter="{x:Static local:NotificationFlowDirection.LeftUp}" Margin="5,10">Show Notification on Left Up</Button>
             <Button Command="{Binding AddNotification}" CommandParameter="{x:Static local:NotificationFlowDirection.RightUp}"  Margin="5,10">Show Notification on Right Up</Button>
             <Button Command="{Binding MailNotification}"  Margin="5,10">Show Mail Notification</Button>
+            <Button Command="{Binding ClearNotifications}"  Margin="5,10">Clear All Notifications</Button>
         </StackPanel>
         
     </ScrollViewer>

@@ -39,6 +39,13 @@ $RECYCLE.BIN/
 .Trashes
 .VolumeIcon.icns
 
+# Exclude specific Directories
+/1.0/WPFNotification/packages
+/1.0/WPFNotification/WPFNotification/bin
+/1.0/WPFNotification/WPFNotification/obj
+1.0/WPFNotification/WPFNotificationDemo/bin
+1.0/WPFNotification/WPFNotificationDemo/obj
+
 # Directories potentially created on remote AFP share
 .AppleDB
 .AppleDesktop

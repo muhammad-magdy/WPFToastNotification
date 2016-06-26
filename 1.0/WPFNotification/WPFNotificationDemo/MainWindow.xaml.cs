@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WPFNotificationDemo.ViewModel;
 
 namespace WPFNotificationDemo
 {
@@ -24,6 +25,7 @@ namespace WPFNotificationDemo
         public MainWindow()
         {
             InitializeComponent();
+            Closing += (s, e) => ViewModelLocator.Cleanup();
         }
     }
 }

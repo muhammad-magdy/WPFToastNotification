@@ -89,5 +89,24 @@ namespace WPFNotificationDemo.ViewModel
                     }));
             }
         }
+
+        private RelayCommand _clearNotifications;
+
+        /// <summary>
+        /// The clear All notifications command.
+        /// Remove all notifications from notification list and buffer list.
+        /// </summary>
+        public RelayCommand ClearNotifications
+        {
+            get
+            {
+                return _clearNotifications
+                    ?? (_clearNotifications = new RelayCommand(
+                    () =>
+                    {
+                        _dailogService.ClearNotifications();
+                    }));
+            }
+        }
     }
 }
