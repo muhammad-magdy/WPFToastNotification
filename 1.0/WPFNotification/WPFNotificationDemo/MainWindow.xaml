@@ -4,6 +4,7 @@
                   xmlns:mui="http://firstfloorsoftware.com/ModernUI"
                   xmlns:local="clr-namespace:WPFNotification.Core.Configuration;assembly=WPFNotification"
                   Title="Notification Poup" 
+                  Icon="/Resources/images/toast_Icon.png"
                   Style="{StaticResource BlankWindow}"
                   Width="400"
                   Height="300"
