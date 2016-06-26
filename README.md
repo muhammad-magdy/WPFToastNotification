@@ -19,7 +19,7 @@ See some [screenshots](https://github.com/muhammad-magdy/WPFToastNotification/wi
   * Width
   * Height
   * Notification template 
-  * Notification Flow Direction, Set direction in which new notifications will appear. Avalaible options are:
+  * Notification Flow Direction, Set direction in which new notifications will appear. Available options are:
     * RightBottom (default)
     * LeftBottom
     * LeftUp
