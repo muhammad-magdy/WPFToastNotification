@@ -19,7 +19,7 @@ See some [screenshots](https://github.com/muhammad-magdy/WPFToastNotification/wi
   * Width
   * Height
   * Notification template 
-  * Notification Flow Direction, Set direction in which new notifications will appear. Available options are:
+  * Notification Flow Direction,That set direction in which new notifications will appear. Available options are:
     * RightBottom (default)
     * LeftBottom
     * LeftUp
@@ -28,6 +28,7 @@ See some [screenshots](https://github.com/muhammad-magdy/WPFToastNotification/wi
   * You can impelement your own notification
 * Show one notification per time and if there are other notifications they will be placed in a queue and will be shown when the place is available
 * Prevent the notification from fading out when hovering on it
+* Allow to clear all notification from the notification list and the buffer list
 * **Support windows 7 or later.** 
 
 ## Acknowledgements
