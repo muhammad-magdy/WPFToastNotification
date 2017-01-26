@@ -1,5 +1,4 @@
-﻿
-namespace WPFNotificationDemo.Model
+﻿namespace WPFNotificationDemo.Model
 {
     public class MailNotification
     {

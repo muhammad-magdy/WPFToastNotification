@@ -1,5 +1,4 @@
-﻿using System;
-using WPFNotification.Core;
+﻿using WPFNotification.Core;
 using WPFNotification.Core.Configuration;
 
 namespace WPFNotification.Services

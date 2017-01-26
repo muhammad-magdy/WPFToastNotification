@@ -6,8 +6,6 @@ namespace WPFNotification.Converters
 {
     public class EmptyStringConverter : BaseConverter, IValueConverter
     {
-        public EmptyStringConverter()
-        { }
         public object Convert(object value, Type targetType,
                               object parameter, CultureInfo culture)
         {
@@ -19,6 +17,5 @@ namespace WPFNotification.Converters
         {
             throw new NotImplementedException();
         }
-
     }
 }
