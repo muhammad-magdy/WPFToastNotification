@@ -23,17 +23,15 @@ namespace WPFNotificationDemo.ViewModel
     public class MainViewModel : ViewModelBase
     {
         private readonly INotificationDialogService _dialogService;
+
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
         /// <param name="dialogService">The NotificationDialogService object</param>
-
-
         public MainViewModel(INotificationDialogService dialogService)
         {
             _dialogService = dialogService;
         }
-
 
 
         private RelayCommand _mailNotification;
