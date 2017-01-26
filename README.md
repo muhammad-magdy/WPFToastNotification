@@ -29,7 +29,7 @@ See some [screenshots](https://github.com/muhammad-magdy/WPFToastNotification/wi
 * Show one notification per time and if there are other notifications they will be placed in a queue and will be shown when the place is available
 * Prevent the notification from fading out when hovering on it
 * Allow to clear all notification from the notification list and the buffer list
-* **Support windows 7 or later.** 
+* **Support Windows 7 or later.** 
 
 ## Acknowledgements
 * Adapted the NotifyBox from [Elysium](https://elysiumextra.codeplex.com)
