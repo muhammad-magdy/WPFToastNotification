@@ -26,7 +26,7 @@ namespace WPFNotificationDemo.ViewModel
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
-        /// <param name="dailogService">The NotificationDialogService object</param>
+        /// <param name="dialogService">The NotificationDialogService object</param>
 
 
         public MainViewModel(INotificationDialogService dialogService)
