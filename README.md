@@ -9,7 +9,7 @@ Check out the **toast notification demo app**. The app demonstrates How to use t
 ## Documentation
 See some [screenshots](https://github.com/muhammad-magdy/WPFToastNotification/wiki/Screenshots) to get an idea of how the toast notification will be displayed on the screen. And visit the [wiki](https://github.com/muhammad-magdy/WPFToastNotification/wiki) to learn how to use it into your application.
 
-![](http://i1042.photobucket.com/albums/b426/muhammed_magdy/MailNotification_intro_zpsibibsvpb.png)
+![](https://raw.githubusercontent.com/muhammad-magdy/WPFToastNotification/master/images/MailNotification_intro.png)
 
 ## Features
 * Simple, lightweight and fancy toast notification with title, content and overridable predefined image displayed at the bottom of the screen
