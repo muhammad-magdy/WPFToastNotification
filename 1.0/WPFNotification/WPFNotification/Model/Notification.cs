@@ -5,6 +5,6 @@ namespace WPFNotification.Model
     {
         public string Title { get; set; }
         public string Message { get; set; }
-        public string ImgURL { get; set; }
+        public string ImgUrl { get; set; }
     }
 }

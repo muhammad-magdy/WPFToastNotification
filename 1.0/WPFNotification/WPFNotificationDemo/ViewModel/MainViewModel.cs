@@ -22,18 +22,16 @@ namespace WPFNotificationDemo.ViewModel
     /// </summary>
     public class MainViewModel : ViewModelBase
     {
-        private readonly INotificationDialogService _dailogService;
+        private readonly INotificationDialogService _dialogService;
+
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
-        /// <param name="dailogService">The NotificationDialogService object</param>
-
-
-        public MainViewModel(INotificationDialogService dailogService)
+        /// <param name="dialogService">The NotificationDialogService object</param>
+        public MainViewModel(INotificationDialogService dialogService)
         {
-            _dailogService = dailogService;
+            _dialogService = dialogService;
         }
-
 
 
         private RelayCommand _mailNotification;
@@ -57,7 +55,7 @@ namespace WPFNotificationDemo.ViewModel
                             Content = "I would like to request for vacation from 20/12/2015 to 30/12/2015 ............."
                         };
                         var configuration = new NotificationConfiguration(TimeSpan.Zero, null, null, Constants.MailNotificationTemplateName, null);
-                        _dailogService.ShowNotificationWindow(newNotification, configuration);
+                        _dialogService.ShowNotificationWindow(newNotification, configuration);
                     }));
             }
         }
@@ -85,7 +83,7 @@ namespace WPFNotificationDemo.ViewModel
                             Message = "Test one Fail Please check your Machine Code and Try Again"
                             // ,ImgURL = "pack://application:,,,a/Resources/Images/warning.png"
                         };
-                        _dailogService.ShowNotificationWindow(newNotification, notificationConfiguration);
+                        _dialogService.ShowNotificationWindow(newNotification, notificationConfiguration);
                     }));
             }
         }
@@ -104,7 +102,7 @@ namespace WPFNotificationDemo.ViewModel
                     ?? (_clearNotifications = new RelayCommand(
                     () =>
                     {
-                        _dailogService.ClearNotifications();
+                        _dialogService.ClearNotifications();
                     }));
             }
         }

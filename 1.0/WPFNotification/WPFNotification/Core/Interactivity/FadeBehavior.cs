@@ -59,8 +59,8 @@ namespace WPFNotification.Core.Interactivity
         /// </summary>
         public TimeSpan BeginTime
         {
-            get { return (TimeSpan)this.GetValue(BeginTimeProperty); }
-            set { this.SetValue(BeginTimeProperty, value); }
+            get { return (TimeSpan)GetValue(BeginTimeProperty); }
+            set { SetValue(BeginTimeProperty, value); }
         }
 
         /// <summary>
@@ -68,8 +68,8 @@ namespace WPFNotification.Core.Interactivity
         /// </summary>
         public TimeSpan Duration
         {
-            get { return (TimeSpan)this.GetValue(DurationProperty); }
-            set { this.SetValue(DurationProperty, value); }
+            get { return (TimeSpan)GetValue(DurationProperty); }
+            set { SetValue(DurationProperty, value); }
         }
 
         /// <summary>
@@ -77,8 +77,8 @@ namespace WPFNotification.Core.Interactivity
         /// </summary>
         public bool IsAnimatingOnIsVisibleChanged
         {
-            get { return (bool)this.GetValue(IsAnimatingOnIsVisibleChangedProperty); }
-            set { this.SetValue(IsAnimatingOnIsVisibleChangedProperty, value); }
+            get { return (bool)GetValue(IsAnimatingOnIsVisibleChangedProperty); }
+            set { SetValue(IsAnimatingOnIsVisibleChangedProperty, value); }
         }
 
         /// <summary>
@@ -86,8 +86,8 @@ namespace WPFNotification.Core.Interactivity
         /// </summary>
         public bool IsAnimatingOnLoaded
         {
-            get { return (bool)this.GetValue(IsAnimatingOnLoadedProperty); }
-            set { this.SetValue(IsAnimatingOnLoadedProperty, value); }
+            get { return (bool)GetValue(IsAnimatingOnLoadedProperty); }
+            set { SetValue(IsAnimatingOnLoadedProperty, value); }
         }
 
         #endregion
@@ -99,15 +99,15 @@ namespace WPFNotification.Core.Interactivity
         /// </summary>
         public void FadeIn()
         {
-            Storyboard storyboard = GetFadeInStoryboard(this.BeginTime, this.Duration);
+            Storyboard storyboard = GetFadeInStoryboard(BeginTime, Duration);
             EventHandler eventHandler = null;
             eventHandler = (sender, e) =>
             {
                 storyboard.Completed -= eventHandler;
-                this.OnFadeInCompleted(this, EventArgs.Empty);
+                OnFadeInCompleted(this, EventArgs.Empty);
             };
             storyboard.Completed += eventHandler;
-            storyboard.Begin(this.AssociatedObject);
+            storyboard.Begin(AssociatedObject);
         }
 
         /// <summary>
@@ -115,15 +115,15 @@ namespace WPFNotification.Core.Interactivity
         /// </summary>
         public void FadeOut()
         {
-            Storyboard storyboard = GetFadeOutStoryboard(this.BeginTime, this.Duration);
+            Storyboard storyboard = GetFadeOutStoryboard(BeginTime, Duration);
             EventHandler eventHandler = null;
             eventHandler = (sender, e) =>
             {
                 storyboard.Completed -= eventHandler;
-                this.OnFadeOutCompleted(this, EventArgs.Empty);
+                OnFadeOutCompleted(this, EventArgs.Empty);
             };
             storyboard.Completed += eventHandler;
-            storyboard.Begin(this.AssociatedObject);
+            storyboard.Begin(AssociatedObject);
         }
 
         #endregion
@@ -137,8 +137,8 @@ namespace WPFNotification.Core.Interactivity
         {
             base.OnAttached();
 
-            this.AssociatedObject.IsVisibleChanged += this.OnIsVisibleChanged;
-            this.AssociatedObject.Loaded += this.OnLoaded;
+            AssociatedObject.IsVisibleChanged += OnIsVisibleChanged;
+            AssociatedObject.Loaded += OnLoaded;
         }
 
         /// <summary>
@@ -148,8 +148,8 @@ namespace WPFNotification.Core.Interactivity
         {
             base.OnDetaching();
 
-            this.AssociatedObject.IsVisibleChanged -= this.OnIsVisibleChanged;
-            this.AssociatedObject.Loaded -= this.OnLoaded;
+            AssociatedObject.IsVisibleChanged -= OnIsVisibleChanged;
+            AssociatedObject.Loaded -= OnLoaded;
         }
 
         #endregion
@@ -164,22 +164,24 @@ namespace WPFNotification.Core.Interactivity
         /// <returns> The <see cref="Storyboard"/>. </returns>
         private static Storyboard GetFadeInStoryboard(TimeSpan beginTime, TimeSpan duration)
         {
-            DoubleAnimationUsingKeyFrames animation = new DoubleAnimationUsingKeyFrames();
-            animation.FillBehavior = FillBehavior.HoldEnd;
+            DoubleAnimationUsingKeyFrames animation = new DoubleAnimationUsingKeyFrames
+            {
+                FillBehavior = FillBehavior.HoldEnd
+            };
             animation.KeyFrames.Add(
-                new SplineDoubleKeyFrame()
+                new SplineDoubleKeyFrame
                 {
                     KeyTime = KeyTime.FromTimeSpan(new TimeSpan()),
                     Value = 0
                 });
             animation.KeyFrames.Add(
-                new SplineDoubleKeyFrame()
+                new SplineDoubleKeyFrame
                 {
                     KeyTime = KeyTime.FromTimeSpan(beginTime),
                     Value = 0
                 });
             animation.KeyFrames.Add(
-                new SplineDoubleKeyFrame()
+                new SplineDoubleKeyFrame
                 {
                     KeyTime = KeyTime.FromTimeSpan(beginTime + duration),
                     Value = 1
@@ -200,16 +202,18 @@ namespace WPFNotification.Core.Interactivity
         /// <returns> The <see cref="Storyboard"/>. </returns>
         private static Storyboard GetFadeOutStoryboard(TimeSpan beginTime, TimeSpan duration)
         {
-            DoubleAnimationUsingKeyFrames animation = new DoubleAnimationUsingKeyFrames();
-            animation.FillBehavior = FillBehavior.HoldEnd;
+            DoubleAnimationUsingKeyFrames animation = new DoubleAnimationUsingKeyFrames
+            {
+                FillBehavior = FillBehavior.HoldEnd
+            };
             animation.KeyFrames.Add(
-                new SplineDoubleKeyFrame()
+                new SplineDoubleKeyFrame
                 {
                     KeyTime = KeyTime.FromTimeSpan(beginTime),
                     Value = 1
                 });
             animation.KeyFrames.Add(
-                new SplineDoubleKeyFrame()
+                new SplineDoubleKeyFrame
                 {
                     KeySpline = new KeySpline(0.5, 0, 1, 0.75),
                     KeyTime = KeyTime.FromTimeSpan(beginTime + duration),
@@ -234,12 +238,8 @@ namespace WPFNotification.Core.Interactivity
         /// <param name="e"> The e. </param>
         private void OnFadeInCompleted(object sender, EventArgs e)
         {
-            EventHandler eventHandler = this.FadeInCompleted;
-
-            if (eventHandler != null)
-            {
-                eventHandler(sender, e);
-            }
+            EventHandler eventHandler = FadeInCompleted;
+            eventHandler?.Invoke(sender, e);
         }
 
         /// <summary>
@@ -249,12 +249,8 @@ namespace WPFNotification.Core.Interactivity
         /// <param name="e"> The e. </param>
         private void OnFadeOutCompleted(object sender, EventArgs e)
         {
-            EventHandler eventHandler = this.FadeOutCompleted;
-
-            if (eventHandler != null)
-            {
-                eventHandler(sender, e);
-            }
+            EventHandler eventHandler = FadeOutCompleted;
+            eventHandler?.Invoke(sender, e);
         }
 
         /// <summary>
@@ -264,11 +260,11 @@ namespace WPFNotification.Core.Interactivity
         /// <param name="e"> The e. </param>
         private void OnIsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            if (this.IsAnimatingOnIsVisibleChanged)
+            if (IsAnimatingOnIsVisibleChanged)
             {
-                if (this.AssociatedObject.Visibility == Visibility.Visible)
+                if (AssociatedObject.Visibility == Visibility.Visible)
                 {
-                    this.FadeIn();
+                    FadeIn();
                 }
 
                 // this.FadeOut();
@@ -282,9 +278,9 @@ namespace WPFNotification.Core.Interactivity
         /// <param name="e"> The e. </param>
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
-            if (this.IsAnimatingOnLoaded)
+            if (IsAnimatingOnLoaded)
             {
-                this.FadeIn();
+                FadeIn();
             }
         }
 
