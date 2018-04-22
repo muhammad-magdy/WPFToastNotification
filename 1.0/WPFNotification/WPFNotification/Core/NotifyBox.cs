@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reactive.Linq;
 using System.Windows;
 using System.Windows.Interactivity;
 using System.Windows.Media;
+using System.Windows.Threading;
 using WPFNotification.Core.Configuration;
 using WPFNotification.Core.Interactivity;
 
@@ -50,6 +50,7 @@ namespace WPFNotification.Core
             notificationWindows = new List<WindowInfo>();
             notificationsBuffer = new List<WindowInfo>();
             notificationWindowsCount = 0;
+            _timer.Tick += DispatcherTimer_Tick;
         }
 
         #endregion
@@ -90,6 +91,22 @@ namespace WPFNotification.Core
             Show(content, NotificationConfiguration.DefaultConfiguration);
         }
 
+        private static DispatcherTimer _timer = new DispatcherTimer();
+
+        private static void DispatcherTimer_Tick(object sender, EventArgs e) {
+            _timer.Stop();
+            if(_currentWindowInfo != null)
+                OnTimerElapsed(_currentWindowInfo);
+        }
+
+        private static WindowInfo _currentWindowInfo = null;
+        private static void StartWindowCloseTimer(WindowInfo windowInfo) {
+            _timer.Stop();
+            _timer.Interval = windowInfo.DisplayDuration;
+            _currentWindowInfo = windowInfo;
+            _timer.Start();
+        }
+
         /// <summary>
         /// Shows the specified window as a notification.
         /// </summary>
@@ -115,12 +132,9 @@ namespace WPFNotification.Core
             }
             else
             {
-                Observable
-              .Timer(displayDuration)
-              .ObserveOnDispatcher()
-              .Subscribe(x => OnTimerElapsed(windowInfo));
-                notificationWindows.Add(windowInfo);
+                StartWindowCloseTimer(windowInfo);
                 window.Show();
+                notificationWindows.Add(windowInfo);
             }
         }
 
@@ -155,10 +169,7 @@ namespace WPFNotification.Core
 
             if (windowInfo.Window.IsMouseOver)
             {
-                Observable
-                    .Timer(windowInfo.DisplayDuration)
-                    .ObserveOnDispatcher()
-                    .Subscribe(x => OnTimerElapsed(windowInfo));
+                StartWindowCloseTimer(windowInfo);
             }
             else
             {
@@ -179,10 +190,8 @@ namespace WPFNotification.Core
                     if (notificationsBuffer != null && notificationsBuffer.Count > 0)
                     {
                         var BufferWindowInfo = notificationsBuffer.First();
-                        Observable
-                         .Timer(BufferWindowInfo.DisplayDuration)
-                         .ObserveOnDispatcher()
-                         .Subscribe(x => OnTimerElapsed(BufferWindowInfo));
+                        StartWindowCloseTimer(BufferWindowInfo);
+
                         notificationWindows.Add(BufferWindowInfo);
                         BufferWindowInfo.Window.Show();
                         notificationsBuffer.Remove(BufferWindowInfo);
@@ -207,10 +216,8 @@ namespace WPFNotification.Core
                 if (notificationsBuffer != null && notificationsBuffer.Count > 0)
                 {
                     var BufferWindowInfo = notificationsBuffer.First();
-                    Observable
-                     .Timer(BufferWindowInfo.DisplayDuration)
-                     .ObserveOnDispatcher()
-                     .Subscribe(x => OnTimerElapsed(BufferWindowInfo));
+                    StartWindowCloseTimer(BufferWindowInfo);
+
                     notificationWindows.Add(BufferWindowInfo);
                     BufferWindowInfo.Window.Show();
                     notificationsBuffer.Remove(BufferWindowInfo);
