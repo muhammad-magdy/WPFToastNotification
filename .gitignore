@@ -45,7 +45,10 @@ $RECYCLE.BIN/
 /1.0/WPFNotification/WPFNotification/obj
 1.0/WPFNotification/WPFNotificationDemo/bin
 1.0/WPFNotification/WPFNotificationDemo/obj
-
+1.0/WPFNotification/WPFNotificationNuGet.Packager/bin
+1.0/WPFNotification/WPFNotificationNuGet.Packager/obj
+1.0/WPFNotification/.vs
+*.nupkg.bak
 # Directories potentially created on remote AFP share
 .AppleDB
 .AppleDesktop

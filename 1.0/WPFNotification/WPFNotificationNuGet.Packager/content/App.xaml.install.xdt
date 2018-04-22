@@ -1,0 +1,21 @@
+﻿<Application xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <Application.Resources xdt:Transform="InsertIfMissing" />
+  <Application.Resources>
+    <ResourceDictionary  xdt:Transform="InsertIfMissing"/>
+    <ResourceDictionary xdt:Transform="InsertBefore(/*[local-name()='Application']/*[local-name()='Application.Resources']/*[1])" />
+    <ResourceDictionary xdt:Locator="XPath(/*[local-name()='Application']/*[local-name()='Application.Resources']/*[local-name()='ResourceDictionary'][last()])">
+      <ResourceDictionary.MergedDictionaries xdt:Transform="InsertIfMissing"/>
+      <ResourceDictionary.MergedDictionaries xdt:Transform="InsertBefore(/*[local-name()='Application']/*[local-name()='Application.Resources']/*[local-name()='ResourceDictionary']/*[1])"/>
+    </ResourceDictionary >
+    <ResourceDictionary.MergedDictionaries xdt:Locator="XPath(/*[local-name()='Application']/*[local-name()='Application.Resources']/*[local-name()='ResourceDictionary'][last()]/*[local-name()='ResourceDictionary.MergedDictionaries'][last()])">
+      <ResourceDictionary  Source="/WPFNotification;component/Assets/NotificationUI.xaml" xdt:Transform="Insert" />
+    </ResourceDictionary.MergedDictionaries >
+
+    <ResourceDictionary xdt:Transform="Remove" xdt:Locator="XPath(/*[local-name()='Application']/*[local-name()='Application.Resources']/*[local-name()='ResourceDictionary'][1])" />
+
+    <ResourceDictionary.MergedDictionaries xdt:Transform="Remove" xdt:Locator="XPath(/*[local-name()='Application']/*[local-name()='Application.Resources']/*[local-name()='ResourceDictionary' and last()]/*[local-name()='ResourceDictionary.MergedDictionaries'][1])" />
+
+  </Application.Resources>
+</Application>

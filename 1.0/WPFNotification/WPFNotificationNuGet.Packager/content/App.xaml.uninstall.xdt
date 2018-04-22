@@ -1,0 +1,11 @@
+﻿<Application xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
+  <Application.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries >
+        <ResourceDictionary Source="/WPFNotification;component/Assets/NotificationUI.xaml" xdt:Transform="Remove" xdt:Locator="Match(Source)" />
+      </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
+  </Application.Resources>
+</Application>

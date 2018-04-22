@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>WPFNotification</id>
+    <version>1.1.0</version>
+    <title>Toast Notification for WPF</title>
+    <authors>Muhammed Magdy</authors>
+    <owners>Muhammed Magdy</owners>
+    <description>
+      Fancy toast notification for WPF applications easy to use and support MVVM pattern. A small notification window with image, title and content displayed at the bottom of the screen. You can use the default implementation or build your own custom notification.Notifications added to a buffer queue then each notification appears after the previous notification disappeared or closed.Support windows 7 or later and different screen resolution
+    </description>
+    <releaseNotes>
+      V1.0.2 Adds support for windows 7 or later.
+      Adds support for displaying notification on different screen resolutions.
+      Add Notification Flow Direction,That Set direction in which new notifications will appear. Available options are:
+      * RightBottom (default)
+      * LeftBottom
+      * LeftUp
+      * RightUp
+      Add Clear notification feature, that Remove all notifications from the notification list and the buffer list.
+      V1.0.3 Add Package Dependencies
+      V1.1.0 Remove dependency on System.Reactive.* dlls
+    </releaseNotes>
+    <summary>
+      Fancy Toast notification for WPF applications.
+    </summary>
+    <language>en-US</language>
+    <projectUrl>https://github.com/muhammad-magdy/WPFToastNotification</projectUrl>
+    <iconUrl>https://raw.githubusercontent.com/muhammad-magdy/WPFToastNotification/master/1.0/WPFNotification/WPFNotification/Resources/Images/toast_Icon64x64.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <licenseUrl>http://opensource.org/licenses/MIT</licenseUrl>
+    <copyright>Copyright 2016 WPF Notification Software</copyright>
+    <!--<dependencies>
+      <dependency id="System.Reactive" version="3.1.1" />
+    </dependencies>-->
+    <references>
+      <reference file="WPFNotification.dll" />
+    </references>
+    <tags>WPFNotification WPFToastNotification ToastNotification NotificationWPF Toast NotificationWPF Notification WPFToast WPF</tags>
+  </metadata>
+  <files>
+    <file src="lib\" target="lib" />
+    <file src="tools\" target="tools" />
+    <file src="content\" target="content" />
+  </files>
+</package>
