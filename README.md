@@ -36,7 +36,7 @@ See some [screenshots](https://github.com/muhammad-magdy/WPFToastNotification/wi
 * Adapted the NotifyBox from [Elysium](https://elysiumextra.codeplex.com)
 
 ## Donation
-If this project help you reduce time to develop, you can give me a cup of coffee &#128521;
+If this project help you reduce time to develop, you can Buy me a cup of coffee that we can chat over sometime &#128521;
 
 [![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/paypalme/MuhammadMAhmed)
 
