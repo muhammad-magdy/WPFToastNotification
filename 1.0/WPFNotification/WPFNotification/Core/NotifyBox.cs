@@ -232,32 +232,39 @@ namespace WPFNotification.Core
         /// <param name="notificationFlowDirection"> Direction in which new notifications will appear.</param>
         private static void SetWindowDirection(Window window, NotificationFlowDirection notificationFlowDirection)
         {
-            var workingArea = System.Windows.Forms.Screen.PrimaryScreen.WorkingArea;
-            var transform = PresentationSource.FromVisual(Application.Current.MainWindow).CompositionTarget.TransformFromDevice;
-            var corner = transform.Transform(new Point(workingArea.Right, workingArea.Bottom));
-
-            switch (notificationFlowDirection)
+            try
             {
-                case NotificationFlowDirection.RightBottom:
-                    window.Left = corner.X - window.Width - window.Margin.Right - Margin;
-                    window.Top = corner.Y - window.Height - window.Margin.Top;
-                    break;
-                case NotificationFlowDirection.LeftBottom:
-                    window.Left = 0;
-                    window.Top = corner.Y - window.Height - window.Margin.Top;
-                    break;
-                case NotificationFlowDirection.LeftUp:
-                    window.Left = 0;
-                    window.Top = 0;
-                    break;
-                case NotificationFlowDirection.RightUp:
-                    window.Left = corner.X - window.Width - window.Margin.Right - Margin;
-                    window.Top = 0;
-                    break;
-                default:
-                    window.Left = corner.X - window.Width - window.Margin.Right - Margin;
-                    window.Top = corner.Y - window.Height - window.Margin.Top;
-                    break;
+                var workingArea = System.Windows.Forms.Screen.PrimaryScreen.WorkingArea;
+                var transform = PresentationSource.FromVisual(Application.Current.MainWindow).CompositionTarget.TransformFromDevice;
+                var corner = transform.Transform(new Point(workingArea.Right, workingArea.Bottom));
+
+                switch (notificationFlowDirection)
+                {
+                    case NotificationFlowDirection.RightBottom:
+                        window.Left = corner.X - window.Width - window.Margin.Right - Margin;
+                        window.Top = corner.Y - window.Height - window.Margin.Top;
+                        break;
+                    case NotificationFlowDirection.LeftBottom:
+                        window.Left = 0;
+                        window.Top = corner.Y - window.Height - window.Margin.Top;
+                        break;
+                    case NotificationFlowDirection.LeftUp:
+                        window.Left = 0;
+                        window.Top = 0;
+                        break;
+                    case NotificationFlowDirection.RightUp:
+                        window.Left = corner.X - window.Width - window.Margin.Right - Margin;
+                        window.Top = 0;
+                        break;
+                    default:
+                        window.Left = corner.X - window.Width - window.Margin.Right - Margin;
+                        window.Top = corner.Y - window.Height - window.Margin.Top;
+                        break;
+                }
+            }
+            catch
+            {
+                // Don't modify the window settings. If null-reference occurs, this allows the notification display to continue.
             }
         }
 
